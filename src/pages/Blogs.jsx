@@ -27,7 +27,7 @@ import { useLang } from '../utils/i18n';
 
 const UI = {
   en: {
-    seoTitle: 'Writing & Insights — Rodrigo Arenas',
+    seoTitle: 'Writing & Insights — Wiem Zakraoui',
     seoDesc: 'Notes, articles, and insights on data science, ML, and entrepreneurship.',
     overline: 'Blog',
     title: 'Writing & Insights',
@@ -43,21 +43,21 @@ const UI = {
     new: 'New',
     mins: (m) => `${m} min`,
   },
-  es: {
-    seoTitle: 'Escritura & Notas — Rodrigo Arenas',
-    seoDesc: 'Notas, artículos e ideas sobre ciencia de datos, ML y emprendimiento.',
+  fr: {
+    seoTitle: 'Écrits & Réflexions — Wiem Zakraoui',
+    seoDesc: 'Notes, articles et réflexions sur la data science, le ML et l’entrepreneuriat.',
     overline: 'Blog',
-    title: 'Artículos y notas',
-    desc: 'Análisis profundos y notas rápidas sobre ML, sistemas de datos y creación de productos.',
-    searchPlaceholder: 'Buscar artículos',
-    sortRecent: 'Más recientes',
-    sortAZ: 'Título (A → Z)',
-    ctaRead: 'Leer',
-    featured: 'Destacados',
-    stripQ: '¿Buscas implementar ML en producción?',
-    stripSee: 'Ver proyectos',
-    stripTalk: 'Hablemos',
-    new: 'Nuevo',
+    title: 'Écrits & Réflexions',
+    desc: 'Plongées approfondies et notes rapides sur le ML, les systèmes de données et la création de produits.',
+    searchPlaceholder: 'Rechercher des articles',
+    sortRecent: 'Plus récents',
+    sortAZ: 'Titre (A → Z)',
+    ctaRead: 'Lire',
+    featured: 'À la une',
+    stripQ: 'Envie de déployer du ML en production ?',
+    stripSee: 'Voir les projets',
+    stripTalk: 'Discutons',
+    new: 'Nouveau',
     mins: (m) => `${m} min`,
   },
 };
@@ -81,7 +81,6 @@ const LinkButton = ({ link }) => (
     </IconButton>
   </Tooltip>
 );
-
 
 const BlogCard = ({ item, lang = 'en', ui = UI.en }) => {
   const desc = item.description_i18n?.[lang] || item.description_i18n?.en || '';
@@ -118,7 +117,7 @@ const BlogCard = ({ item, lang = 'en', ui = UI.en }) => {
         <Stack direction="row" spacing={1} alignItems="center">
           {item.date && (
             <Typography variant="caption" color="text.secondary">
-              {new Date(item.date).toLocaleDateString()}
+              {new Date(item.date).toLocaleDateString(lang === 'fr' ? 'fr-FR' : undefined)}
             </Typography>
           )}
           {item.read_mins && (
@@ -158,7 +157,7 @@ export default function Blogs() {
   const [query, setQuery] = useState('');
   const [sort, setSort] = useState('recent');
   const [lang] = useLang();
-  const t = UI[lang];
+  const t = UI[lang] || UI.en; // Fallback to English if lang not supported
 
   const canonical = typeof window !== 'undefined' ? window.location.href : undefined;
   const EMAIL = process.env.EMAIL || '';
@@ -167,7 +166,7 @@ export default function Blogs() {
     const set = new Set(['All']);
     blogConfig.forEach((it) => {
       if (it.category) {
-        const label = typeof it.category === 'string' ? it.category : it.category?.[lang] || it.category?.['en'];
+        const label = typeof it.category === 'string' ? it.category : it.category?.[lang] || it.category?.en;
         if (label) set.add(label);
       }
     });
@@ -185,7 +184,7 @@ export default function Blogs() {
       ? filtered.filter((it) =>
           (it.title || '').toLowerCase().includes(q) ||
           (it.description_i18n?.en || '').toLowerCase().includes(q) ||
-          (it.description_i18n?.es || '').toLowerCase().includes(q)
+          (it.description_i18n?.fr || '').toLowerCase().includes(q)
         )
       : filtered;
 
@@ -291,7 +290,7 @@ export default function Blogs() {
           alignItems: 'center',
           gap: 2,
           justifyContent: 'space-between',
-          background: `linear-gradient(90deg, ${th.palette.secondary.main}14, transparent)` // 0x14 alpha
+          background: `linear-gradient(90deg, ${th.palette.secondary.main}14, transparent)`
         })}>
           <Typography sx={{ fontWeight: 700 }}>
             {t.stripQ}
@@ -334,5 +333,3 @@ export default function Blogs() {
     </>
   );
 }
-
-

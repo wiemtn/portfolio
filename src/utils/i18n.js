@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 
 const STORAGE_KEY = 'site_lang';
 const DEFAULT_LANG = 'en';
-export const SUPPORTED_LANGS = ['en', 'es'];
+export const SUPPORTED_LANGS = ['en', 'fr'];
 
 export const getLang = () => {
   try {

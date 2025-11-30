@@ -1,20 +1,19 @@
 import React from 'react';
 import { AiFillGithub } from "react-icons/ai";
 import { SiMedium } from "react-icons/si";
-import fastapiSklearn from "../images/fastapi_sklearn.png";
 
 const blogConfig = [
   {
     id: "blog-8",
     title: "How to Solve Scheduling Problems in Python",
-    category: { en: "Operations Research", es: "Investigación de Operaciones" },
+    category: { en: "Operations Research", Fr: "Investigación de Operaciones" },
     description_i18n: {
       en: "Use linear programming to minimize the gap between required and scheduled resources.",
-      es: "Usa programación lineal para minimizar la brecha entre recursos requeridos y programados."
+      Fr: "Usa programación lineal para minimizar la brecha entre recursos requeridos y programados."
     },
     links: [{ name: "article", url: "https://towardsdatascience.com/how-to-solve-scheduling-problems-in-python-36a9af8de451", icon: <SiMedium/> }],
-    image: "https://miro.medium.com/max/700/1*VKIGzmJrYBzcPlB6USx8OA.jpeg",
-    target: "_blank",
+   // image: "https://miro.medium.com/max/700/1*VKIGzmJrYBzcPlB6USx8OA.jpeg",
+    //target: "_blank",
     date: "2020-07-01"
   },
   {
@@ -55,8 +54,8 @@ const blogConfig = [
       { name: "article", url: "https://towardsdatascience.com/real-time-anomaly-detection-with-apache-kafka-and-python-3a40281c01c9", icon: <SiMedium/> },
       { name: "repo", url: "https://github.com/rodrigo-arenas/kafkaml-anomaly-detection", icon: <AiFillGithub/> }
     ],
-    image: "https://miro.medium.com/max/1400/1*Xem1rbG0Fa8DAhtez7mvsA.jpeg",
-    target: "_blank",
+   // image: "https://miro.medium.com/max/1400/1*Xem1rbG0Fa8DAhtez7mvsA.jpeg",
+   // target: "_blank",
     date: "2019-12-05"
   },
   {
@@ -71,7 +70,6 @@ const blogConfig = [
       { name: "article", url: "https://medium.com/analytics-vidhya/serve-a-machine-learning-model-using-sklearn-fastapi-and-docker-85aabf96729b", icon: <SiMedium/> },
       { name: "repo", url: "https://github.com/rodrigo-arenas/fast-ml-deploy", icon: <AiFillGithub/> }
     ],
-    image: fastapiSklearn,
     target: "_blank",
     date: "2019-10-22"
   },

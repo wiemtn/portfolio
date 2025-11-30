@@ -7,7 +7,7 @@ const menuConfig = {
     {
       id: "menu-0",
       title: "Home",
-      title_i18n: { en: "Home", es: "Inicio" },
+      title_i18n: { en: "Home", fr: "Accueil" },
       path: "/",
       icon: <AiFillHome size={35} />,
       className: "nav-text",
@@ -15,23 +15,16 @@ const menuConfig = {
     {
       id: "menu-1",
       title: "Projects",
-      title_i18n: { en: "Projects", es: "Proyectos" },
+      title_i18n: { en: "Projects", fr: "Projet" },
       path: "/projects",
       icon: <AiOutlineGithub size={35} />,
       className: "nav-text",
     },
-    {
-      id: "menu-2",
-      title: "Blogs",
-      title_i18n: { en: "Blogs", es: "Blog" },
-      path: "/blogs",
-      icon: <BsMedium size={35} />,
-      className: "nav-text",
-    },
+   
     {
       id: "menu-3",
       title: "Skills",
-      title_i18n: { en: "Skills", es: "Habilidades" },
+      title_i18n: { en: "Skills", fr: "Compétences" },
       path: "/skills",
       icon: <AiFillCode size={35} />,
       className: "nav-text",

@@ -6,18 +6,18 @@ import { withUtm } from '../../utils/withUtm';
 
 const COPY = {
   en: {
-    headline: "Let’s build something that ships",
-    sub: "Strategy, prototypes, and production ML in weeks — not quarters.",
+    headline: "Looking to turn your data into performance drivers?",
+    sub: "That’s my playground",
     cta: "Book a Call",
     projects: "View Projects",
     subject: "Consulting Inquiry",
   },
-  es: {
-    headline: "Construyamos algo que salga a producción",
-    sub: "Estrategia, prototipos y ML en producción en semanas — no trimestres.",
-    cta: "Agendar llamada",
-    projects: "Ver proyectos",
-    subject: "Consulta de consultoría",
+  fr: {
+    headline: "Vous cherchez à transformer vos données en leviers de performance ?",
+    sub: "J’en fais mon terrain de jeu",
+    cta: "Réserver un appel",
+    projects: "Voir mes projets",
+    subject: "Demande de consultation",
   },
 };
 
@@ -25,12 +25,11 @@ export default function Footer() {
   const [lang] = useLang();
   const t = COPY[lang] || COPY.en;
 
-
-  const EMAIL = process.env.EMAIL || '';
+  // Ton email réel (fallback si .env manquant)
+  const EMAIL = process.env.EMAIL || 'wiem.zakraoui@esprit.tn';
 
   const emailHref = useMemo(() => {
     const subject = encodeURIComponent(t.subject);
-    if (!EMAIL) return '#';
     return withUtm(`mailto:${EMAIL}?subject=${subject}`, 'footer_cta');
   }, [EMAIL, t.subject]);
 
@@ -62,11 +61,9 @@ export default function Footer() {
         </Stack>
         <FooterItems />
         <Typography variant="caption" sx={{ display: 'block', mt: 2, opacity: 0.75 }}>
-          © {new Date().getFullYear()} Rodrigo Arenas
+          © {new Date().getFullYear()} Wiem Zakraoui
         </Typography>
       </Container>
     </Box>
   );
 }
-
-

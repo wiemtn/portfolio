@@ -27,8 +27,8 @@ import { useLang } from '../utils/i18n';
 
 const UI = {
   en: {
-    seoTitle: 'Projects | Rodrigo Arenas',
-    seoDesc: 'Open-source libraries, systems, and real-world projects by Rodrigo Arenas.',
+    seoTitle: 'Projects | Wiem Zakraoui',
+    seoDesc: 'Open-source libraries, systems, and real-world projects by Wiem Zakraoui.',
     overline: 'Selected Work',
     title: 'Projects',
     desc:
@@ -38,17 +38,17 @@ const UI = {
     sortAZ: 'A → Z',
     ctaView: 'View',
   },
-  es: {
-    seoTitle: 'Proyectos | Rodrigo Arenas',
-    seoDesc: 'Librerías open-source, sistemas y proyectos reales de Rodrigo Arenas.',
-    overline: 'Trabajo destacado',
-    title: 'Proyectos',
+  fr: {
+    seoTitle: 'Projets | Wiem Zakraoui',
+    seoDesc: 'Librairies open-source, systèmes et projets réels réalisés par Wiem Zakraoui.',
+    overline: 'Travaux sélectionnés',
+    title: 'Projets',
     desc:
-      'Una colección curada que abarca librerías, modelos de ML y este sitio web. Filtra, busca y explora.',
-    searchPlaceholder: 'Buscar proyectos',
-    sortRecent: 'Recientes',
+      'Une collection choisie de librairies robustes, de systèmes de données et de ce site. Filtrez, recherchez et explorez.',
+    searchPlaceholder: 'Rechercher des projets',
+    sortRecent: 'Récents',
     sortAZ: 'A → Z',
-    ctaView: 'Ver',
+    ctaView: 'Voir',
   },
 };
 
@@ -125,7 +125,7 @@ const ProjectCard = ({ project, lang = 'en' }) => {
           target="_blank"
           rel="noopener noreferrer"
         >
-          {UI[lang].ctaView}
+          {UI[lang]?.ctaView || UI.en.ctaView}
         </Button>
       </CardActions>
     </Card>
@@ -137,7 +137,7 @@ export default function Projects() {
   const [query, setQuery] = useState('');
   const [sort, setSort] = useState('recent');
   const [lang] = useLang();
-  const t = UI[lang];
+  const t = UI[lang] || UI.en; // Fallback to English
 
   const projects = useMemo(() => {
     const filtered = projectConfig.filter((p) => {
@@ -153,23 +153,24 @@ export default function Projects() {
           (p) =>
             (p.title || '').toLowerCase().includes(q) ||
             (p.description_i18n?.en || '').toLowerCase().includes(q) ||
-            (p.description_i18n?.es || '').toLowerCase().includes(q)
+            (p.description_i18n?.fr || '').toLowerCase().includes(q)
         )
       : filtered;
 
     return [...searched].sort((a, b) => {
       if (sort === 'az') return (a.title || '').localeCompare(b.title || '');
-      return 0; // 'recent' keeps config order
+      // 'recent' keeps config order (or add date field later)
+      return 0;
     });
   }, [category, query, sort, lang]);
 
   const categoryChips = useMemo(() => {
-    const labels = new Set(['All']); // keep sentinel value; display text stays as-is
+    const labels = new Set(['All']);
     projectConfig.forEach((p) => {
       if (p.category) {
         const label =
           typeof p.category === 'string' ? p.category : p.category?.[lang] || p.category?.en;
-        labels.add(label);
+        if (label) labels.add(label);
       }
     });
     return Array.from(labels);
@@ -261,6 +262,3 @@ export default function Projects() {
     </>
   );
 }
-
-
-

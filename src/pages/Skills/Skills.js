@@ -9,9 +9,9 @@ const UI = {
     main: 'Main Skills & Tools',
     complementary: 'Complementary Skills & Tools',
   },
-  es: {
-    main: 'Habilidades y herramientas principales',
-    complementary: 'Habilidades y herramientas complementarias',
+  fr: {
+    main: 'Compétences et outils principaux',
+    complementary: 'Compétences et outils complémentaires',
   },
 };
 
@@ -57,6 +57,3 @@ export default function Skills() {
     </section>
   );
 }
-
-
-

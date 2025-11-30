@@ -25,23 +25,23 @@ export default function Home() {
   const jsonLd = {
     '@context': 'https://schema.org',
     '@type': 'Person',
-    name: 'Rodrigo Arenas',
+    name: 'Wiem Zakraoui',
     url: canonical,
-    jobTitle: titles?.[0] || 'Data Scientist',
+    jobTitle: titles?.[0] || 'Data Scientist et spécialiste IA',
   };
 
   // greeting may be a JSX node (from config) or a string; handle both
   const greetingNode = homeConfig.greeting_i18n?.[lang] || homeConfig.greeting;
-  const ExperienceLabel = lang === 'es' ? 'Experiencia' : 'Experience';
+  const ExperienceLabel = lang === 'Fr' ? 'Experience' : 'Experience';
 
   return (
     <section>
       <Seo
-        title={lang === 'es' ? 'Rodrigo Arenas — Científico de Datos & Consultor' : 'Rodrigo Arenas — Data Scientist & Consultant'}
+        title={lang === 'fr' ? 'Wiem Zakraoui— Data Scientiste & specialiste IA' : 'Wiem Zakraoui — Data Scientist & IA'}
         description={
-          lang === 'es'
-            ? 'Consultoría en ML y datos: LLMs, RAG, AutoML, analítica en Azure. Proyectos, artículos y experiencia.'
-            : 'ML & data consulting: LLMs, RAG, AutoML, analytics on Azure. Selected projects, writing, and experience.'
+          lang === 'fr'
+            ? 'Consultante en IA et donnees: LLMs, RAG, Finetuning.'
+            : 'IA & data consulting: LLMs, RAG, Finetuning. Selected projects, writing, and experience.'
         }
         canonical={canonical}
         jsonLd={jsonLd}
